@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "인바디 트래커",
+  title: "오성 몸짱 프로젝트",
   description: "주차별 인바디 기록 & 시각화",
 };
 

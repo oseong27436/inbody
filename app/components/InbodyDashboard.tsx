@@ -64,6 +64,21 @@ export default function InbodyDashboard({ records }: Props) {
     visceral_fat: r.visceral_fat,
   }))
 
+  const yDomain = (() => {
+    const activeKeys = [...activeMetrics]
+    const vals = chartData.flatMap((d) =>
+      activeKeys.map((k) => d[k as MetricKey]).filter((v): v is number => v != null)
+    )
+    if (vals.length === 0) return ['auto', 'auto'] as const
+    const min = Math.min(...vals)
+    const max = Math.max(...vals)
+    const pad = Math.max((max - min) * 0.3, 0.5)
+    return [
+      parseFloat((min - pad).toFixed(1)),
+      parseFloat((max + pad).toFixed(1)),
+    ] as const
+  })()
+
   function toggleMetric(key: MetricKey) {
     setActiveMetrics((prev) => {
       const next = new Set(prev)
@@ -79,7 +94,7 @@ export default function InbodyDashboard({ records }: Props) {
 
   return (
     <div className="min-h-screen bg-zinc-900 text-zinc-100 p-6">
-      <h1 className="text-2xl font-bold mb-6">💪 인바디 트래커</h1>
+      <h1 className="text-2xl font-bold mb-6">💪 오성 몸짱 프로젝트</h1>
 
       {/* 요약 카드 */}
       <div className="grid grid-cols-3 gap-4 mb-8">
@@ -135,7 +150,7 @@ export default function InbodyDashboard({ records }: Props) {
             <LineChart data={chartData} margin={{ top: 5, right: 10, left: -10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#3f3f46" />
               <XAxis dataKey="date" stroke="#71717a" tick={{ fontSize: 12 }} />
-              <YAxis stroke="#71717a" tick={{ fontSize: 12 }} />
+              <YAxis stroke="#71717a" tick={{ fontSize: 12 }} domain={yDomain} />
               <Tooltip
                 contentStyle={{ backgroundColor: '#27272a', border: 'none', borderRadius: '8px' }}
                 labelStyle={{ color: '#a1a1aa' }}
