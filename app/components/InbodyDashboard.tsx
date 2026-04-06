@@ -94,11 +94,11 @@ export default function InbodyDashboard({ records }: Props) {
 
   return (
     <div className="min-h-screen bg-zinc-900 text-zinc-100">
-      <div className="max-w-2xl mx-auto px-4 py-6">
+      <div className="max-w-2xl mx-auto px-5 py-8">
       <h1 className="text-2xl font-bold mb-6">💪 오성 몸짱 프로젝트</h1>
 
       {/* 요약 카드 */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-3 gap-3 mb-6">
         {/* 체중 */}
         <div className="bg-zinc-800 rounded-xl p-5">
           <p className="text-zinc-400 text-sm mb-1">체중</p>
@@ -126,7 +126,7 @@ export default function InbodyDashboard({ records }: Props) {
       </div>
 
       {/* 차트 */}
-      <div className="bg-zinc-800 rounded-xl p-5 mb-8">
+      <div className="bg-zinc-800 rounded-xl p-5 mb-6">
         <div className="flex flex-wrap gap-2 mb-4">
           {METRICS.map((m) => (
             <button
@@ -177,8 +177,8 @@ export default function InbodyDashboard({ records }: Props) {
       </div>
 
       {/* 전체 기록 테이블 */}
-      <div className="bg-zinc-800 rounded-xl overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-zinc-800 rounded-xl overflow-x-auto">
+        <table className="w-full text-sm min-w-[540px]">
           <thead>
             <tr className="border-b border-zinc-700 text-zinc-400">
               <th className="text-left px-4 py-3">날짜</th>
